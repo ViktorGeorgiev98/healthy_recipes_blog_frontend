@@ -1,12 +1,9 @@
 @import "tailwindcss";
 
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-  font-family: "Courier New", Courier, monospace;
+/* body {
+  @apply text-gray-700;
 } */
+
+body {
+  @apply text-gray-700 bg-gray-100 font-sans;
+}

@@ -3,18 +3,18 @@ import Logo from "./Logo";
 
 export default function NavBar() {
   return (
-    <div className="pr-10 pl-1 w-full bg-yellow-400 flex items-center justify-between">
+    <div className="pr-10 pl-1 w-full bg-green-300 flex items-center justify-between">
       <NavLink to="home">
         <Logo />
       </NavLink>
       <nav>
         <ul className="flex items-center justify-evenly gap-10">
-          <li className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-1000 cursor-pointer hover:text-black">
+          <li className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-300 cursor-pointer hover:text-yellow-600">
             Hello User
           </li>
           <li>
             <NavLink
-              className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-1000 cursor-pointer hover:text-black"
+              className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-300 cursor-pointer hover:text-yellow-600"
               to="recipes"
             >
               Recipes
@@ -22,7 +22,7 @@ export default function NavBar() {
           </li>
           <li>
             <NavLink
-              className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-1000 cursor-pointer hover:text-black"
+              className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-300 cursor-pointer hover:text-yellow-600"
               to="register"
             >
               Register
@@ -30,7 +30,7 @@ export default function NavBar() {
           </li>
           <li>
             <NavLink
-              className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-1000 cursor-pointer hover:text-black"
+              className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-300 cursor-pointer hover:text-yellow-600"
               to="login"
             >
               Login
@@ -38,7 +38,7 @@ export default function NavBar() {
           </li>
           <li>
             <NavLink
-              className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-1000 cursor-pointer hover:text-black"
+              className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-300 cursor-pointer hover:text-yellow-600"
               to="add-recipe"
             >
               Add Recipe
@@ -46,7 +46,7 @@ export default function NavBar() {
           </li>
           <li>
             <NavLink
-              className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-1000 cursor-pointer hover:text-black"
+              className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-300 cursor-pointer hover:text-yellow-600"
               to="about"
             >
               About
@@ -54,7 +54,7 @@ export default function NavBar() {
           </li>
           <li>
             <NavLink
-              className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-500 cursor-pointer hover:text-black"
+              className="text-xl italic text-green-950 font-semibold hover:underline transition-all duration-300 cursor-pointer hover:text-yellow-600"
               to="logout"
             >
               Logout
