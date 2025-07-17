@@ -5,9 +5,9 @@ export default function HeroSection() {
   return (
     <section
       id="hero-section"
-      className="h-[85vh] bg-green-300 w-full flex items-center justify-around gap-20"
+      className="h-[85vh] bg-green-300 w-full flex items-center justify-between gap-10 px-16"
     >
-      <div className="flex flex-col items-start justify-center gap-10">
+      <div className="flex flex-col items-start justify-center gap-10 px-25">
         <motion.h1
           className="text-7xl font-bold uppercase tracking-widest italic text-yellow-500"
           initial={{ opacity: 0, x: -300 }}
@@ -35,7 +35,18 @@ export default function HeroSection() {
           <Button type="primary">Register Now</Button>
         </motion.div>
       </div>
-      <div>image</div>
+      <motion.div
+        className="w-full max-w-md mx-auto"
+        initial={{ opacity: 0, x: 300 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.4 }}
+      >
+        <img
+          class="w-full h-auto rounded-2xl shadow-xl object-cover hover:scale-105 transition-transform duration-500 ease-in-out"
+          src="/public/healthy-salad.png"
+          alt="healthy salad"
+        />
+      </motion.div>
     </section>
   );
 }
