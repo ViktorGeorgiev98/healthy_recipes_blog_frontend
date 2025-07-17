@@ -1,6 +1,6 @@
 import { motion, scale } from "framer-motion";
 
-export default function Button({ type = "secondary", children }) {
+export default function Button({ type = "secondary", onClick, children }) {
   const styles = {
     primary: {
       css: "px-4 py-2 text-gray-700 font-bold text-xl bg-yellow-500 flex items-center justify-center shadow-lg rounded-sm border-black border-1 border-solid cursor-pointer",
@@ -26,7 +26,11 @@ export default function Button({ type = "secondary", children }) {
   };
 
   return (
-    <motion.button className={styles[type].css} whileHover={animations[type]}>
+    <motion.button
+      className={styles[type].css}
+      whileHover={animations[type]}
+      onClick={onClick}
+    >
       {children}
     </motion.button>
   );
