@@ -7,3 +7,10 @@
 body {
   @apply text-gray-700 bg-gray-100 font-sans;
 }
+
+/* 
+  main color => text-green-950
+  secondary color => text-green-300
+  golden color => text-yellow-500
+  text color => text-gray-700
+*/
