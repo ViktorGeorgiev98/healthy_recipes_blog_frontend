@@ -47,14 +47,6 @@ export default function NavBar() {
           <li>
             <NavLink
               className="text-2xl italic text-green-950 font-semibold hover:underline transition-all duration-300 cursor-pointer hover:text-yellow-600"
-              to="about"
-            >
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="text-2xl italic text-green-950 font-semibold hover:underline transition-all duration-300 cursor-pointer hover:text-yellow-600"
               to="logout"
             >
               Logout

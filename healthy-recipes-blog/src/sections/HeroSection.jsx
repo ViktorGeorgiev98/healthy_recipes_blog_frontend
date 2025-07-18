@@ -48,7 +48,7 @@ export default function HeroSection() {
         transition={{ duration: 1, delay: 0.4 }}
       >
         <img
-          class="w-full h-auto rounded-2xl shadow-xl object-cover hover:scale-105 transition-transform duration-500 ease-in-out"
+          className="w-full h-auto rounded-2xl shadow-xl object-cover hover:scale-105 transition-transform duration-500 ease-in-out"
           src="/public/healthy-salad.png"
           alt="healthy salad"
         />
