@@ -1,8 +1,19 @@
+import { NavLink } from "react-router";
 import Button from "./Button";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 export default function RecipeCard({ title, description, image }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   return (
-    <div className="max-w-sm rounded-2xl overflow-hidden shadow-xl bg-white transition-transform transform hover:scale-105 duration-300 flex flex-col">
+    <motion.div
+      className="max-w-sm rounded-2xl overflow-hidden shadow-xl bg-white transition-transform transform hover:scale-105 duration-500 flex flex-col cursor-pointer hover:-translate-y-5"
+      ref={ref}
+      initial={{ opacity: 0, y: 150 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8 }}
+    >
       {/* Image: full width, no padding */}
       <img
         src={`https://healthyrecipesblogapi-production.up.railway.app${image}`}
@@ -16,6 +27,6 @@ export default function RecipeCard({ title, description, image }) {
         <p className="text-gray-600 text-sm">{description}</p>
         <Button type="secondary">Details</Button>
       </div>
-    </div>
+    </motion.div>
   );
 }

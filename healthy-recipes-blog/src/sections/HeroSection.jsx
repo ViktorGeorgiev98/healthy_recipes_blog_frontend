@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
 import Button from "../components/Button";
+import { useNavigate } from "react-router";
 
 export default function HeroSection() {
+  const navigate = useNavigate();
   return (
     <section
       id="hero-section"
       className="h-[85vh] bg-green-300 w-full flex items-center justify-between gap-10 px-16"
     >
-      <div className="flex flex-col items-start justify-center gap-10 px-25">
+      <div className="flex flex-col items-start justify-center gap-20 px-25">
         <motion.h1
           className="text-7xl font-bold uppercase tracking-widest italic text-yellow-500"
           initial={{ opacity: 0, x: -300 }}
@@ -31,8 +33,12 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.8 }}
           className="flex items-center justify-start gap-7"
         >
-          <Button type="secondary">Check Recipes</Button>
-          <Button type="primary">Register Now</Button>
+          <Button onClick={() => navigate("/recipes")} type="secondary">
+            Check Recipes
+          </Button>
+          <Button onClick={() => navigate("/register")} type="primary">
+            Register Now
+          </Button>
         </motion.div>
       </div>
       <motion.div
