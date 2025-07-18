@@ -1,11 +1,16 @@
 @import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* body {
+  @apply text-gray-700;
+} */
+
+body {
+  @apply text-gray-700 bg-gray-100 font-sans;
 }
 
-html {
-  font-size: 62.5%;
-}
+/* 
+  main color => text-green-950
+  secondary color => text-green-300
+  golden color => text-yellow-500
+  text color => text-gray-700
+*/
