@@ -1,3 +1,4 @@
+import { use } from "react";
 import { APIURL } from "./constants";
 
 export const getNewestRecipes = async () => {
@@ -35,5 +36,27 @@ export const registerUser = async ({ email, password }) => {
     throw new Error(errorMsg);
   }
 
+  return data;
+};
+
+export const loginUser = async ({ username, password }) => {
+  const formData = new URLSearchParams();
+  formData.append("grant_type", "password");
+  formData.append("username", username);
+  formData.append("password", password);
+  const response = await fetch(`${APIURL}/users/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" }, // Changed to x-www-form-urlencoded, required for login from the server fast api app
+    body: formData,
+  });
+  const data = await response.json();
+  console.log(data);
+  if (!response.ok) {
+    const errorMsg =
+      data?.detail?.[0]?.msg || data.message || data.detail || "Unknown error";
+    throw new Error(errorMsg);
+  }
+  console.log(data);
+  localStorage.setItem("token", data.access_token);
   return data;
 };

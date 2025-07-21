@@ -4,70 +4,61 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { launchAlertCenteredWithFadeInDown } from "../utils/alert";
 import { APIURL } from "../utils/constants";
+import { useMutation } from "@tanstack/react-query";
+import { loginUser } from "../utils/api";
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
   });
-
-  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError("");
   };
 
   const validateInput = () => {
-    if (!formData.email || !formData.password || !formData.confirmPassword) {
-      setError("All fields are mandatory!");
-      return false;
-    }
-    if (formData.password !== formData.confirmPassword) {
+    if (!formData.email || !formData.password) {
       launchAlertCenteredWithFadeInDown(
         "fail",
-        "Password and Confirm password do not match!",
-        "You must have matching passwords!"
+        "All fields are required!",
+        "Please fill in all fields."
       );
       return false;
     }
     return true;
   };
 
+  const {
+    mutate: login,
+    isLoading,
+    isError,
+    error,
+  } = useMutation({
+    mutationFn: loginUser,
+    onSuccess: (data) => {
+      launchAlertCenteredWithFadeInDown(
+        "success",
+        "Login Successful",
+        "Welcome back!"
+      );
+      navigate("/home");
+    },
+    onError: (error) => {
+      launchAlertCenteredWithFadeInDown("fail", "Login Failed", error.message);
+    },
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const inputIsValid = validateInput();
     if (inputIsValid) {
-      const response = await fetch(`${APIURL}/users/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password, // don't send confirmPassword
-        }),
+      const data = await login({
+        username: formData.email,
+        password: formData.password,
       });
-      const data = await response.json();
       console.log(data);
-      if (response.status !== 201) {
-        const errorMsg =
-          data?.detail?.[0]?.msg ||
-          data.message ||
-          data.detail ||
-          "Unknown error";
-        launchAlertCenteredWithFadeInDown("fail", response.status, errorMsg);
-        return;
-      }
-      console.log({ data });
-      launchAlertCenteredWithFadeInDown(
-        "success",
-        "Registration Successful",
-        "You can now log in with your new account!"
-      );
-      navigate("/login");
     }
   };
 
@@ -80,7 +71,7 @@ export default function LoginPage() {
     >
       <div className="bg-white shadow-xl rounded-2xl p-10 w-full max-w-md">
         <h2 className="text-3xl font-bold text-yellow-500 text-center mb-6">
-          Create Account
+          Login to your account
         </h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -136,23 +127,21 @@ export default function LoginPage() {
             </label>
           </div>
 
-          {error && <p className="text-red-500 text-xl text-center">{error}</p>}
-
           <Button
             type="submit"
             className="bg-yellow-500 text-white font-semibold py-2 rounded-md hover:bg-yellow-600 transition-colors"
           >
-            Register
+            Login
           </Button>
         </form>
 
         <p className="text-center text-sm text-gray-600 mt-4">
-          Already have an account?{" "}
+          You do not have an account?{" "}
           <span
             className="text-yellow-500 font-semibold cursor-pointer hover:underline"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/register")}
           >
-            Login
+            Register
           </span>
         </p>
       </div>
