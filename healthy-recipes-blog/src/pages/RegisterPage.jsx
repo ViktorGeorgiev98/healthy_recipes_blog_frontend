@@ -5,6 +5,8 @@ import Button from "../components/Button";
 import { launchAlertCenteredWithFadeInDown } from "../utils/alert";
 import { APIURL } from "../utils/constants";
 import { useMutation } from "@tanstack/react-query";
+import { registerUser } from "../utils/api";
+import Spinner from "../components/Spinner";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -14,16 +16,17 @@ export default function RegisterPage() {
     confirmPassword: "",
   });
 
-  const [error, setError] = useState("");
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError("");
   };
 
   const validateInput = () => {
     if (!formData.email || !formData.password || !formData.confirmPassword) {
-      setError("All fields are mandatory!");
+      launchAlertCenteredWithFadeInDown(
+        "fail",
+        "All fields are mandatory!",
+        "Please fill in all fields."
+      );
       return false;
     }
     if (formData.password !== formData.confirmPassword) {
@@ -37,38 +40,35 @@ export default function RegisterPage() {
     return true;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const inputIsValid = validateInput();
-    if (inputIsValid) {
-      const response = await fetch(`${APIURL}/users/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password, // don't send confirmPassword
-        }),
-      });
-      const data = await response.json();
-      console.log(data);
-      if (response.status !== 201) {
-        const errorMsg =
-          data?.detail?.[0]?.msg ||
-          data.message ||
-          data.detail ||
-          "Unknown error";
-        launchAlertCenteredWithFadeInDown("fail", response.status, errorMsg);
-        return;
-      }
-      console.log({ data });
+  const {
+    mutate: register,
+    isLoading,
+    isError,
+    error,
+  } = useMutation({
+    mutationFn: registerUser,
+    onSuccess: () => {
       launchAlertCenteredWithFadeInDown(
         "success",
         "Registration Successful",
         "You can now log in with your new account!"
       );
       navigate("/login");
+    },
+    onError: (error) => {
+      launchAlertCenteredWithFadeInDown(
+        "fail",
+        "Registration Failed",
+        error.message || "An error occurred during registration."
+      );
+    },
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const inputIsValid = validateInput();
+    if (inputIsValid) {
+      register({ email: formData.email, password: formData.password });
     }
   };
 
@@ -79,6 +79,7 @@ export default function RegisterPage() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
+      {isLoading && <Spinner />}
       <div className="bg-white shadow-xl rounded-2xl p-10 w-full max-w-md">
         <h2 className="text-3xl font-bold text-yellow-500 text-center mb-6">
           Create Account
@@ -162,8 +163,6 @@ export default function RegisterPage() {
               Repeat Password
             </label>
           </div>
-
-          {error && <p className="text-red-500 text-xl text-center">{error}</p>}
 
           <Button
             type="submit"

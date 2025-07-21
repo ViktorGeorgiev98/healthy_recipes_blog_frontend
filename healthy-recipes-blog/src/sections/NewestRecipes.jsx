@@ -3,18 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { APIURL } from "../utils/constants";
 import RecipeCard from "../components/RecipeCard";
 import Button from "../components/Button";
+import { getNewestRecipes } from "../utils/api";
 
 export default function NewestRecipes() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["recipes"],
-    queryFn: async () => {
-      const response = await fetch(
-        `${APIURL}/recipes/?limit=6&offset=0&order_by=created_at`
-      );
-      const data = await response.json();
-      console.log(data);
-      return data;
-    },
+    queryFn: getNewestRecipes,
   });
 
   if (isLoading) return <Spinner />;
