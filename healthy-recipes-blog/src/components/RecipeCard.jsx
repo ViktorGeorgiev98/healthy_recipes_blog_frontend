@@ -25,7 +25,7 @@ export default function RecipeCard({ title, description, image }) {
       <div className="p-6 flex flex-col items-center text-center gap-4">
         <h3 className="text-2xl font-bold text-gray-800">{title}</h3>
         <p className="text-gray-600 text-sm">{description}</p>
-        <Button type="secondary">Details</Button>
+        <Button buttonType="secondary">Details</Button>
       </div>
     </motion.div>
   );

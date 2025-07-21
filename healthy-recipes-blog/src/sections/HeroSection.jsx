@@ -33,10 +33,10 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.8 }}
           className="flex items-center justify-start gap-7"
         >
-          <Button onClick={() => navigate("/recipes")} type="secondary">
+          <Button onClick={() => navigate("/recipes")} buttonType="secondary">
             Check Recipes
           </Button>
-          <Button onClick={() => navigate("/register")} type="primary">
+          <Button onClick={() => navigate("/register")} buttonType="primary">
             Register Now
           </Button>
         </motion.div>
