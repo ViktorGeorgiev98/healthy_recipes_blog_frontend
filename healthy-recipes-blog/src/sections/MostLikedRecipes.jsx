@@ -3,18 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { APIURL } from "../utils/constants";
 import RecipeCard from "../components/RecipeCard";
 import Button from "../components/Button";
+import { getMostLikedRecipes } from "../utils/api";
 
 export default function MostLikedRecipes() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["recipes"],
-    queryFn: async () => {
-      const response = await fetch(
-        `${APIURL}/recipes/?limit=6&offset=0&order_by=likes`
-      );
-      const data = await response.json();
-      console.log(data);
-      return data;
-    },
+    queryFn: getMostLikedRecipes,
   });
 
   if (isLoading) return <Spinner />;
