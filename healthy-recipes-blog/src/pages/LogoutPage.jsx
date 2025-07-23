@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { removeLocalStorageLogout } from "../utils/localStorage";
+import { useAuth } from "../context/AuthenticationContext";
 
 export default function LogoutPage() {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   useEffect(() => {
-    removeLocalStorageLogout();
+    logout();
     navigate("/login");
   }, [navigate]);
 

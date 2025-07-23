@@ -1,6 +1,5 @@
 import { use } from "react";
 import { APIURL } from "./constants";
-import { setLocalStorageLogin } from "./localStorage";
 
 export const getNewestRecipes = async () => {
   const response = await fetch(
@@ -55,6 +54,5 @@ export const loginUser = async ({ username, password }) => {
       data?.detail?.[0]?.msg || data.message || data.detail || "Unknown error";
     throw new Error(errorMsg);
   }
-  setLocalStorageLogin(data.user);
   return data;
 };

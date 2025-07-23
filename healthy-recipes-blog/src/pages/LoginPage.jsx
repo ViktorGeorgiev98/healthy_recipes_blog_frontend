@@ -5,9 +5,11 @@ import Button from "../components/Button";
 import { launchAlertCenteredWithFadeInDown } from "../utils/alert";
 import { APIURL } from "../utils/constants";
 import { useMutation } from "@tanstack/react-query";
+import { useAuth } from "../context/AuthenticationContext";
 import { loginUser } from "../utils/api";
 
 export default function LoginPage() {
+  const { login: setLocalStorage } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -38,6 +40,7 @@ export default function LoginPage() {
   } = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
+      setLocalStorage(data.user);
       launchAlertCenteredWithFadeInDown(
         "success",
         "Login Successful",
@@ -58,7 +61,6 @@ export default function LoginPage() {
         username: formData.email,
         password: formData.password,
       });
-      console.log(data);
     }
   };
 
