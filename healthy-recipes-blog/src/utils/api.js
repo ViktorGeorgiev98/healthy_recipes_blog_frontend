@@ -38,6 +38,15 @@ export const registerUser = async ({ email, password }) => {
   return data;
 };
 
+export const getRecipeById = async (id) => {
+  const response = await fetch(`${APIURL}/recipes/${id}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch recipe");
+  }
+  const data = await response.json();
+  return data;
+};
+
 export const loginUser = async ({ username, password }) => {
   const formData = new URLSearchParams();
   formData.append("grant_type", "password");

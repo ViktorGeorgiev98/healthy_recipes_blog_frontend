@@ -29,6 +29,7 @@ export default function NewestRecipes() {
             title={recipe.title}
             description={recipe.description}
             image={recipe.image_path}
+            id={recipe.id}
           />
         ))}
       </div>
