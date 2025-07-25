@@ -7,6 +7,7 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
 import { AuthProvider } from "./context/AuthenticationContext";
+import AddRecipe from "./pages/AddRecipe";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ function App() {
                 <Route path="register" element={<RegisterPage />} />
                 <Route path="login" element={<LoginPage />} />
                 <Route path="logout" element={<LogoutPage />} />
+                <Route path="add-recipe" element={<AddRecipe />} />
                 <Route path="*" element={<PageNotFound />} />
               </Route>
             </Routes>
