@@ -13,7 +13,6 @@ export default function NewestRecipes() {
 
   if (isLoading) return <Spinner />;
   if (error) return <div>Error loading recipes</div>;
-
   return (
     <section
       id="newest-recipes"
@@ -29,6 +28,7 @@ export default function NewestRecipes() {
             title={recipe.title}
             description={recipe.description}
             image={recipe.image_path}
+            id={recipe.id}
           />
         ))}
       </div>

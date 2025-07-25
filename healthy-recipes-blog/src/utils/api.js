@@ -38,6 +38,15 @@ export const registerUser = async ({ email, password }) => {
   return data;
 };
 
+export const getRecipeById = async (id) => {
+  const response = await fetch(`${APIURL}/recipes/${id}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch recipe");
+  }
+  const data = await response.json();
+  return data;
+};
+
 export const loginUser = async ({ username, password }) => {
   const formData = new URLSearchParams();
   formData.append("grant_type", "password");
@@ -55,4 +64,28 @@ export const loginUser = async ({ username, password }) => {
     throw new Error(errorMsg);
   }
   return data;
+};
+
+export const createRecipe = async (recipeData) => {
+  const formData = new FormData();
+  formData.append("title", recipeData.title);
+  formData.append("ingredients", recipeData.ingredients);
+  formData.append("description", recipeData.description);
+  formData.append("image", recipeData.image);
+  const response = await fetch(`${APIURL}/recipes/`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: formData,
+  });
+
+  if (!response.ok) {
+    const data = await response.json();
+    const errorMsg =
+      data?.detail?.[0]?.msg || data.message || data.detail || "Unknown error";
+    throw new Error(errorMsg);
+  }
+  const newRecipe = await response.json();
+  return await newRecipe;
 };

@@ -31,12 +31,12 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 200 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="flex items-center justify-start gap-7"
+          className="flex items-center justify-start gap-12"
         >
-          <Button onClick={() => navigate("/recipes")} buttonType="secondary">
-            Check Recipes
+          <Button onClick={() => navigate("/recipes")} buttonType="primary">
+            Browse Recipes
           </Button>
-          <Button onClick={() => navigate("/register")} buttonType="primary">
+          <Button onClick={() => navigate("/register")} buttonType="secondary">
             Register Now
           </Button>
         </motion.div>
