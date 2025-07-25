@@ -12,7 +12,7 @@ export default function RecipeCard({ title, description, image, id }) {
   const isInView = useInView(ref, { once: true });
   const { setOpenModal, openModal, setSelectedRecipeId, selectedRecipeId } =
     useModalContext();
-  setSelectedRecipeId(id);
+  // setSelectedRecipeId(id);
   return (
     <>
       <motion.div

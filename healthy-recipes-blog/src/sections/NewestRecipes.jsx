@@ -13,7 +13,6 @@ export default function NewestRecipes() {
 
   if (isLoading) return <Spinner />;
   if (error) return <div>Error loading recipes</div>;
-
   return (
     <section
       id="newest-recipes"
