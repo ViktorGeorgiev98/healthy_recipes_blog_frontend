@@ -8,29 +8,32 @@ import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
 import { AuthProvider } from "./context/AuthenticationContext";
 import AddRecipe from "./pages/AddRecipe";
+import { ModalContextProvider } from "./context/ModalContext";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <>
-      <AuthProvider>
-        <QueryClientProvider client={queryClient}>
-          <BrowserRouter>
-            <Routes>
-              <Route element={<AppLayout />}>
-                <Route index element={<Navigate replace to="home" />} />
-                <Route path="home" element={<HomePage />} />
-                <Route path="register" element={<RegisterPage />} />
-                <Route path="login" element={<LoginPage />} />
-                <Route path="logout" element={<LogoutPage />} />
-                <Route path="add-recipe" element={<AddRecipe />} />
-                <Route path="*" element={<PageNotFound />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </QueryClientProvider>
-      </AuthProvider>
+      <ModalContextProvider>
+        <AuthProvider>
+          <QueryClientProvider client={queryClient}>
+            <BrowserRouter>
+              <Routes>
+                <Route element={<AppLayout />}>
+                  <Route index element={<Navigate replace to="home" />} />
+                  <Route path="home" element={<HomePage />} />
+                  <Route path="register" element={<RegisterPage />} />
+                  <Route path="login" element={<LoginPage />} />
+                  <Route path="logout" element={<LogoutPage />} />
+                  <Route path="add-recipe" element={<AddRecipe />} />
+                  <Route path="*" element={<PageNotFound />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </QueryClientProvider>
+        </AuthProvider>
+      </ModalContextProvider>
     </>
   );
 }
