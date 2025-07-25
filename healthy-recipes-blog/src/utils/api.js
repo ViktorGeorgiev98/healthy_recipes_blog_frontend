@@ -17,7 +17,6 @@ export const getMostLikedRecipes = async () => {
     `${APIURL}/recipes/?limit=6&offset=0&order_by=likes`
   );
   const data = await response.json();
-  console.log(data);
   return data;
 };
 
@@ -50,13 +49,10 @@ export const loginUser = async ({ username, password }) => {
     body: formData,
   });
   const data = await response.json();
-  console.log(data);
   if (!response.ok) {
     const errorMsg =
       data?.detail?.[0]?.msg || data.message || data.detail || "Unknown error";
     throw new Error(errorMsg);
   }
-  console.log(data);
-  localStorage.setItem("token", data.access_token);
   return data;
 };

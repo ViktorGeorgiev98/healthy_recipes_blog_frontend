@@ -5,25 +5,30 @@ import PageNotFound from "./pages/PageNotFound";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+import LogoutPage from "./pages/LogoutPage";
+import { AuthProvider } from "./context/AuthenticationContext";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            <Route element={<AppLayout />}>
-              <Route index element={<Navigate replace to="home" />} />
-              <Route path="home" element={<HomePage />} />
-              <Route path="register" element={<RegisterPage />} />
-              <Route path="login" element={<LoginPage />} />
-              <Route path="*" element={<PageNotFound />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </QueryClientProvider>
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<AppLayout />}>
+                <Route index element={<Navigate replace to="home" />} />
+                <Route path="home" element={<HomePage />} />
+                <Route path="register" element={<RegisterPage />} />
+                <Route path="login" element={<LoginPage />} />
+                <Route path="logout" element={<LogoutPage />} />
+                <Route path="*" element={<PageNotFound />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </AuthProvider>
     </>
   );
 }

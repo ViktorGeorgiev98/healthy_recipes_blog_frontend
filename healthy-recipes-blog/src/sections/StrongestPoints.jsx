@@ -9,7 +9,7 @@ export default function StrongestPoints() {
       <h2 className="text-3xl font-bold uppercase tracking-widest italic text-green-300 hover:rotate-5 transition-all duration-300">
         More Than Just a Blog
       </h2>
-      <div className="grid grid-cols-3 gap-20 justify-items-start">
+      <div className="grid grid-cols-3 gap-30 justify-items-start">
         <CommunityCard
           title="Nutrition-Packed Recipes"
           description="Every recipe is crafted with a healthy balance of protein, carbs, and fats — making clean eating easy and delicious. No more guesswork, just real food with real benefits."

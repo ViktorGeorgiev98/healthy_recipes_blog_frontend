@@ -22,7 +22,7 @@ export default function MostLikedRecipes() {
       <h2 className="text-3xl font-bold uppercase tracking-widest italic text-green-300 hover:rotate-5 transition-all duration-300">
         Our Most Liked Recipes
       </h2>
-      <div className="grid grid-cols-3 gap-20 justify-items-start">
+      <div className="grid grid-cols-3 gap-30 justify-items-start">
         {data.map((recipe) => (
           <RecipeCard
             key={recipe.id}

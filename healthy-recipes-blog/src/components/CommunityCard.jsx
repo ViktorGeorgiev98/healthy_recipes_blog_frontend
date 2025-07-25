@@ -6,7 +6,7 @@ export default function CommunityCard({ title, description }) {
   const isInView = useInView(ref, { once: true });
   return (
     <motion.div
-      className="max-w-sm rounded-2xl overflow-hidden shadow-xl bg-white transition-transform transform hover:scale-105 duration-500 flex flex-col cursor-pointer hover:-translate-y-5"
+      className="max-w-sm rounded-2xl overflow-hidden shadow-xl bg-green-300 transition-transform transform hover:scale-105 duration-500 flex flex-col cursor-pointer hover:-translate-y-5"
       ref={ref}
       initial={{ opacity: 0, y: 150 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
