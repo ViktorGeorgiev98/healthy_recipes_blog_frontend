@@ -56,3 +56,23 @@ export const loginUser = async ({ username, password }) => {
   }
   return data;
 };
+
+export const createRecipe = async (recipeData) => {
+  const response = await fetch(`${APIURL}/recipes/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify(recipeData),
+  });
+
+  if (!response.ok) {
+    const data = await response.json();
+    const errorMsg =
+      data?.detail?.[0]?.msg || data.message || data.detail || "Unknown error";
+    throw new Error(errorMsg);
+  }
+
+  return await response.json();
+};
