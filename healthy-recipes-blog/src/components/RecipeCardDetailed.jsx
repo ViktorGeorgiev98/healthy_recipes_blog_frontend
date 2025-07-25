@@ -36,6 +36,7 @@ export default function RecipeCardDetailed({ id }) {
         <p className="text-gray-600 text-sm">
           Description: {recipe.description}
         </p>
+        <p className="text-gray-600 text-sm">Likes: {recipe.likes}</p>
         <div className="flex justify-center items-center gap-10">
           <Button
             className="bg-yellow-500 text-white font-semibold py-2 rounded-md hover:bg-yellow-600 transition-colors"

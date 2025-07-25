@@ -7,7 +7,7 @@ import { useModalContext } from "../context/ModalContext";
 import Modal from "./Modal";
 import RecipeCardDetailed from "./RecipeCardDetailed";
 
-export default function RecipeCard({ title, description, image, id }) {
+export default function RecipeCard({ title, ingredients, image, id, likes }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const { setOpenModal, openModal, setSelectedRecipeId, selectedRecipeId } =
@@ -16,7 +16,7 @@ export default function RecipeCard({ title, description, image, id }) {
   return (
     <>
       <motion.div
-        className="w-80 h-[500px] rounded-2xl overflow-hidden shadow-xl bg-white transition-transform transform hover:scale-105 duration-500 flex flex-col gap-10 hover:-translate-y-5"
+        className="w-80 h-auto rounded-2xl overflow-hidden shadow-xl bg-white transition-transform transform hover:scale-105 duration-500 flex flex-col gap-10 hover:-translate-y-5"
         ref={ref}
         initial={{ opacity: 0, y: 150 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -32,7 +32,8 @@ export default function RecipeCard({ title, description, image, id }) {
         {/* Content below image: centered with padding */}
         <div className="p-6 flex flex-col items-center text-center gap-8">
           <h3 className="text-2xl font-bold text-gray-800">{title}</h3>
-          <p className="text-gray-600 text-sm">{description}</p>
+          <p className="text-gray-600 text-sm">Ingredients: {ingredients}</p>
+          <p className="text-gray-600 text-sm">Likes: {likes}</p>
           <Button
             onClick={() => {
               setSelectedRecipeId(id);

@@ -27,9 +27,10 @@ export default function MostLikedRecipes() {
           <RecipeCard
             key={recipe.id}
             title={recipe.title}
-            description={recipe.description}
+            ingredients={recipe.ingredients}
             image={recipe.image_path}
             id={recipe.id}
+            likes={recipe.likes}
           />
         ))}
       </div>

@@ -10,8 +10,8 @@ export default function Modal({ children }) {
         <motion.div
           className="fixed inset-0 bg-opacity-50 backdrop-blur-xs flex items-center justify-center z-[1000] px-4"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          animate={{ opacity: 1, duration: 0.5 }}
+          exit={{ opacity: 0, duration: 0.5 }}
         >
           <motion.div
             className="relative bg-white bg-opacity-90 p-10 rounded-2xl shadow-2xl w-full max-w-3xl text-center"
