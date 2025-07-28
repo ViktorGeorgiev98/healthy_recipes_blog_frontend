@@ -18,7 +18,7 @@ export default function NewestRecipes() {
       id="newest-recipes"
       className="py-20 flex flex-col items-center justify-center gap-20 w-full bg-white"
     >
-      <h1 className="text-3xl font-bold uppercase tracking-widest italic text-yellow-500 hover:rotate-5 transition-all duration-300">
+      <h1 className="text-2xl font-bold uppercase tracking-widest italic text-yellow-500 hover:rotate-5 transition-all duration-300">
         Our Newest Recipes
       </h1>
       <div className="grid grid-cols-3 gap-20 justify-items-start">

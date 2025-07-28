@@ -11,6 +11,7 @@ import AddRecipe from "./pages/AddRecipe";
 import { ModalContextProvider } from "./context/ModalContext";
 import GuestRoutes from "./protected/GuestRoutes";
 import AuthenticatedRoutes from "./protected/AuthenticatedRoutes";
+import RecipesPage from "./pages/RecipesPage";
 
 const queryClient = new QueryClient();
 
@@ -35,7 +36,7 @@ function App() {
                     <Route path="register" element={<RegisterPage />} />
                     <Route path="login" element={<LoginPage />} />
                   </Route>
-
+                  <Route path="recipes" element={<RecipesPage />} />
                   <Route path="*" element={<PageNotFound />} />
                 </Route>
               </Routes>

@@ -5,6 +5,7 @@ import { launchAlertCenteredWithFadeInDown } from "../utils/alert";
 import { useMutation } from "@tanstack/react-query";
 import { createRecipe } from "../utils/api";
 import { useNavigate } from "react-router";
+import Spinner from "../components/Spinner";
 
 export default function AddRecipe() {
   const [formData, setFormData] = useState({
@@ -83,6 +84,10 @@ export default function AddRecipe() {
     //   image: null,
     // });
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <motion.div
