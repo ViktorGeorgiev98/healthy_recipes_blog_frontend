@@ -4,6 +4,8 @@ import { APIURL } from "../utils/constants";
 import Button from "./Button";
 import { getRecipeById } from "../utils/api";
 
+const page = 1; // Placeholder for pagination, if needed
+
 export default function RecipeCardDetailed({ id }) {
   const {
     data: recipe,
