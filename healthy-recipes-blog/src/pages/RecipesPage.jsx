@@ -4,11 +4,19 @@ import Spinner from "../components/Spinner";
 import RecipeCard from "../components/RecipeCard";
 import NewestRecipes from "../sections/NewestRecipes";
 import Button from "../components/Button";
+import { useState } from "react";
 
 export default function RecipesPage() {
+  const itemsPerPage = 6;
+  const [page, setPage] = useState(2);
+  const offset = (page - 1) * itemsPerPage;
+  const maxRecipes = 1000000;
+  const recipesSeen = 0;
+
   const { data, isLoading, error } = useQuery({
     queryKey: ["recipes"],
-    queryFn: getNewestRecipesWithPagination,
+    queryFn: () => getNewestRecipesWithPagination(offset),
+    keepPreviousData: true,
   });
 
   if (error) return <div>Error loading recipes</div>;
@@ -18,8 +26,11 @@ export default function RecipesPage() {
   }
 
   return (
-    <div id="recipes-page" className="bg-white">
-      <h2 className="text-2xl font-bold uppercase tracking-widest italic text-yellow-500 hover:rotate-5 transition-all duration-300 flex items-center justify-center pt-10 flex-col gap-10">
+    <div
+      id="recipes-page"
+      className="bg-white flex flex-col items-center justify-center gap-10 pb-10"
+    >
+      <h2 className="text-2xl font-bold uppercase tracking-widest italic text-yellow-500 hover:rotate-5 transition-all duration-300 flex items-center justify-center pt-10">
         Browse Our Recipes
       </h2>
       <section
@@ -45,8 +56,22 @@ export default function RecipesPage() {
         id="pagination-buttons"
         className="flex items-center justify-start gap-12"
       >
-        <Button type="secondary">Previous</Button>
-        
+        {page > 1 && (
+          <Button
+            type="secondary"
+            onClick={() => setPage((prevPage) => prevPage - 1)}
+          >
+            Previous Page
+          </Button>
+        )}
+        {recipesSeen < maxRecipes && (
+          <Button
+            type="primary"
+            onClick={() => setPage((prevPage) => prevPage + 1)}
+          >
+            Next Page
+          </Button>
+        )}
       </div>
     </div>
   );
