@@ -8,13 +8,12 @@ import { useState } from "react";
 
 export default function RecipesPage() {
   const itemsPerPage = 6;
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
   const offset = (page - 1) * itemsPerPage;
-  const maxRecipes = 1000000;
-  const recipesSeen = 0;
+  const recipesSeen = page * itemsPerPage;
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["recipes"],
+    queryKey: ["recipes", page],
     queryFn: () => getNewestRecipesWithPagination(offset),
     keepPreviousData: true,
   });
@@ -24,6 +23,8 @@ export default function RecipesPage() {
   if (isLoading) {
     return <Spinner />;
   }
+
+  // const maxRecipes = data?.length || 0;
 
   return (
     <div
@@ -48,6 +49,8 @@ export default function RecipesPage() {
               description={recipe.description}
               image={recipe.image_path}
               id={recipe.id}
+              likes={recipe.likes}
+              ingredients={recipe.ingredients}
             />
           ))}
         </div>
@@ -64,7 +67,7 @@ export default function RecipesPage() {
             Previous Page
           </Button>
         )}
-        {recipesSeen < maxRecipes && (
+        {data.length >= 6 && (
           <Button
             type="primary"
             onClick={() => setPage((prevPage) => prevPage + 1)}
