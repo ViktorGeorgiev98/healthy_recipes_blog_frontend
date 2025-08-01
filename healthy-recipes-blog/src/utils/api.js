@@ -28,7 +28,7 @@ export const getRecipesWithQuery = async (query = null, offset = 0) => {
     offset = 0; // Sanitize input
   }
   const response = await fetch(
-    `${APIURL}/recipes/?limit=6&offset=${offset}&order_by=created_at&query=${query}`
+    `${APIURL}/recipes/?limit=6&offset=${offset}&order_by=created_at&search=${query}`
   );
   if (!response.ok) {
     throw new Error("Failed to fetch recipes");

@@ -4,6 +4,7 @@ export default function Button({
   buttonType = "secondary",
   onClick,
   children,
+  type = "submit",
 }) {
   const styles = {
     primary: {
@@ -34,6 +35,7 @@ export default function Button({
       className={styles[buttonType].css}
       whileHover={animations[buttonType]}
       onClick={onClick}
+      type={type}
     >
       {children}
     </motion.button>
