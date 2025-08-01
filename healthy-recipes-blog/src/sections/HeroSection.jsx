@@ -7,7 +7,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero-section"
-      className="h-[85vh] bg-green-300 w-full flex items-center justify-between gap-10 px-16"
+      className="h-[80vh] bg-green-300 w-full flex items-center justify-between gap-10 px-16"
     >
       <div className="flex flex-col items-start justify-center gap-20 px-25">
         <motion.h1

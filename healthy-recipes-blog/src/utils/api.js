@@ -12,6 +12,30 @@ export const getNewestRecipes = async () => {
   return data;
 };
 
+export const getNewestRecipesWithPagination = async (offset = 0) => {
+  if (typeof offset !== "number") offset = 0; // Sanitize input
+  const response = await fetch(
+    `${APIURL}/recipes/?limit=6&offset=${offset}&order_by=created_at`
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch recipes");
+  }
+  return await response.json();
+};
+
+export const getRecipesWithQuery = async (query = null, offset = 0) => {
+  if (typeof offset !== "number") {
+    offset = 0; // Sanitize input
+  }
+  const response = await fetch(
+    `${APIURL}/recipes/?limit=6&offset=${offset}&order_by=created_at&search=${query}`
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch recipes");
+  }
+  return await response.json();
+};
+
 export const getMostLikedRecipes = async () => {
   const response = await fetch(
     `${APIURL}/recipes/?limit=6&offset=0&order_by=likes`
