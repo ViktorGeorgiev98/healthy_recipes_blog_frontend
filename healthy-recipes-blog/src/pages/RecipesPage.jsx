@@ -55,6 +55,11 @@ export default function RecipesPage() {
     setQuery("");
   };
 
+  const clearSearch = () => {
+    setSearchResults([]);
+    setQuery("");
+  };
+
   // const maxRecipes = data?.length || 0;
 
   return (
@@ -115,10 +120,7 @@ export default function RecipesPage() {
         className="flex items-center justify-start gap-12"
       >
         {page > 1 && searchResults.length <= 0 && (
-          <Button
-            type="secondary"
-            onClick={() => setPage((prevPage) => prevPage - 1)}
-          >
+          <Button type="secondary" onClick={() => clearSearch()}>
             Previous Page
           </Button>
         )}
