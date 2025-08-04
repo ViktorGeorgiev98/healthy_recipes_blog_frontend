@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import Button from "../components/Button";
 import { useNavigate } from "react-router";
+import { useAuth } from "../context/AuthenticationContext";
 
 export default function HeroSection() {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
   return (
     <section
       id="hero-section"
@@ -36,9 +38,21 @@ export default function HeroSection() {
           <Button onClick={() => navigate("/recipes")} buttonType="primary">
             Browse Recipes
           </Button>
-          <Button onClick={() => navigate("/register")} buttonType="secondary">
-            Register Now
-          </Button>
+          {!isAuthenticated ? (
+            <Button
+              onClick={() => navigate("/register")}
+              buttonType="secondary"
+            >
+              Register Now
+            </Button>
+          ) : (
+            <Button
+              onClick={() => navigate("/add-recipe")}
+              buttonType="secondary"
+            >
+              Add Recipe
+            </Button>
+          )}
         </motion.div>
       </div>
       <motion.div
