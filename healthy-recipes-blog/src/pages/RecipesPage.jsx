@@ -92,7 +92,7 @@ export default function RecipesPage() {
             <Button
               type="button"
               buttonType="secondary"
-              onClick={() => setSearchResults([])}
+              onClick={() => clearSearch()}
             >
               Clear Search
             </Button>
@@ -120,7 +120,10 @@ export default function RecipesPage() {
         className="flex items-center justify-start gap-12"
       >
         {page > 1 && searchResults.length <= 0 && (
-          <Button type="secondary" onClick={() => clearSearch()}>
+          <Button
+            type="secondary"
+            onClick={() => setPage((prevPage) => prevPage - 1)}
+          >
             Previous Page
           </Button>
         )}
