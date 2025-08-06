@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -30,9 +31,11 @@ const AuthProvider = ({ children }) => {
   const login = (data) => {
     localStorage.setItem("token", data.access_token);
     localStorage.setItem("userEmail", data.email);
+    localStorage.setItem("userId", data.id);
     setToken(data.access_token);
     setUserEmail(data.email);
     setIsAuthenticated(true);
+    setUserId(data.id);
   };
 
   const logout = () => {
@@ -41,6 +44,7 @@ const AuthProvider = ({ children }) => {
     setToken(null);
     setUserEmail(null);
     setIsAuthenticated(false);
+    setUserId(null);
   };
 
   return (

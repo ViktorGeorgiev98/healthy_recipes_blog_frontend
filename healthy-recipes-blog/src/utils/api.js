@@ -68,6 +68,7 @@ export const getRecipeById = async (id) => {
     throw new Error("Failed to fetch recipe");
   }
   const data = await response.json();
+  console.log(data.owner_id);
   return data;
 };
 
