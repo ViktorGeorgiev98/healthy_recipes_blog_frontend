@@ -63,7 +63,7 @@ export default function HeroSection() {
       >
         <img
           className="w-full h-auto rounded-2xl shadow-xl object-cover hover:scale-105 transition-transform duration-500 ease-in-out"
-          src="/public/healthy-salad.png"
+          src="/healthy-salad.png"
           alt="healthy salad"
         />
       </motion.div>
